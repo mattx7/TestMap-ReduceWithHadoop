@@ -1,5 +1,7 @@
 ## Map-Reduce with [Hadoop](http://hadoop.apache.org/)
 
+Created wih example from: [javacodegeeks.com](https://examples.javacodegeeks.com/enterprise-java/apache-hadoop/hadoop-hello-world-example/)
+
 ## Configure application environment
 
 * ([Install Docker](https://docs.docker.com/engine/installation/) for your OS.)
