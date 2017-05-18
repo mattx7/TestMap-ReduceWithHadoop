@@ -11,11 +11,12 @@ Created wih example from: [javacodegeeks.com](https://examples.javacodegeeks.com
 * Start hadoop container with `docker run --name some-hadoop -d sequenceiq/hadoop-docker:2.7.0`
     * (Or `docker start some-hadoop` if already in local repository )
 
-* Use `docker inspect some-hadoop | grep IPAddress` to get the IP from the container.
+// TODO copy/load our jar
 
-* Change the var HOST in the HBaseConstants.py file to the IP of the container.
+## HowTO run the application
 
-## Usage
+* docker exec -it some-hadoop /etc/bootstrap.sh -bash
+
 
 
 
