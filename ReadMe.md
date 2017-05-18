@@ -1,26 +1,22 @@
-## Map-Reduce with [Hadoop](http://hadoop.apache.org/)
+## wordcount.Map-wordcount.Reduce with [Hadoop](http://hadoop.apache.org/)
 
 Created wih example from: [javacodegeeks.com](https://examples.javacodegeeks.com/enterprise-java/apache-hadoop/hadoop-hello-world-example/)
 
-## Configure application environment
+## HowTo run the application
 
 * ([Install Docker](https://docs.docker.com/engine/installation/) for your OS.)
 
-* (Install java sdk 8)
+* Run `docker build -f Dockerfile .` to create an image.
+    * Copy the shown image id into the clipboard.
+ 
+* Start a container with `docker run -it <image id> /etc/bootstrap.sh -bash`.
 
-* Start hadoop container with `docker run --name some-hadoop -d sequenceiq/hadoop-docker:2.7.0`
-    * (Or `docker start some-hadoop` if already in local repository )
+* Create an input directory with `$HADOOP_PREFIX/bin/hadoop fs -mkdir ${INPUT_DIR}`
 
-// TODO copy/load our jar
+* Give hadoop our input.txt `$HADOOP_PREFIX/bin/hadoop fs -put ${WORK_KDIR}/input.txt ${INPUT_DIR}`
 
-## HowTO run the application
+* Verfify the file in the input directory `$HADOOP_PREFIX/bin/hadoop fs -ls ${INPUT_DIR}`
 
-* docker exec -it some-hadoop /etc/bootstrap.sh -bash
+* Run our script `$HADOOP_PREFIX/bin/hadoop jar ${WORK_KDIR}/WordCount.jar ${INPUT_DIR} output`
 
-
-
-
-## Troubleshooting
-
-* `docker attach some-hadoop` to get into the container. 
-    * (`docker exec -it some-hadoop /bin/bash` for multiple shell instances.)
+* Check ouput `$HADOOP_PREFIX/bin/hdfs dfs -cat output/*`

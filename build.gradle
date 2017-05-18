@@ -1,9 +1,10 @@
 group 'hadoop'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'idea'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
@@ -14,4 +15,20 @@ dependencies {
 // https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core
     compile group: 'org.apache.hadoop', name: 'hadoop-core', version: '1.2.1'
 
+}
+
+jar {
+    baseName = 'WordCount'
+    manifest {
+        attributes 'Main-Class': 'wordcount.WordCount'
+    }
+}
+
+task fatJar(type: Jar) {
+    baseName =  'WordCount'
+    manifest {
+        attributes 'Main-Class': 'wordcount.WordCount'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
