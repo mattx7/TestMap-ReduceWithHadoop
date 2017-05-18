@@ -8,7 +8,7 @@ Created wih example from: [javacodegeeks.com](https://examples.javacodegeeks.com
 
 * (Install java sdk 8)
 
-* Start hadoop container with `docker run -d sequenceiq/hadoop-docker:2.7.0`
+* Start hadoop container with `docker run --name some-hadoop -d sequenceiq/hadoop-docker:2.7.0`
     * (Or `docker start some-hadoop` if already in local repository )
 
 * Use `docker inspect some-hadoop | grep IPAddress` to get the IP from the container.
